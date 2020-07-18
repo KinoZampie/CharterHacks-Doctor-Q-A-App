@@ -1,0 +1,17 @@
+body {
+    background-color: #121212;
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+    color:#3993c4;
+}
+
+p{
+    color: #c9eded;
+}
+
+textarea{
+    color: #4b656b;
+}
