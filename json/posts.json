@@ -4,13 +4,13 @@
         "body":"The text of the post goes here",
         "username":"The Post's author",
         "date":"The date of the post",
-        "comments":[12, 32, 42]
+        "comments":[1,2,3]
     },
     "2" :{
         "title":"The second Post's title",
         "body":"The text of the second post goes here",
         "username":"The second Post's author",
         "date":"The date of the second post",
-        "comments":[12, 32, 42]
+        "comments":[4,5,6]
     }
 }

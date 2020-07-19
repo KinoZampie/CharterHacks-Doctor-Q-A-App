@@ -3,6 +3,37 @@
         "body":"The text of the comment goes here",
         "username":"The comment's author",
         "date":"The date of the post",
-        "comments":[12, 32, 42]
+        "comments":[]
+    },
+    "2":{
+        "body":"The text of the comment goes here",
+        "username":"The comment's author",
+        "date":"The date of the post",
+        "comments":[]
+    },
+    "3":{
+        "body":"The text of the comment goes here",
+        "username":"The comment's author",
+        "date":"The date of the post",
+        "comments":[]
+    },
+    "4":{
+        "body":"The text of the comment goes here",
+        "username":"The comment's author",
+        "date":"The date of the post",
+        "comments":[]
+    },
+    "5":{
+        "body":"The text of the comment goes here",
+        "username":"The comment's author",
+        "date":"The date of the post",
+        "comments":[]
+    },
+    "6":{
+        "body":"The text of the comment goes here",
+        "username":"The comment's author",
+        "date":"The date of the post",
+        "comments":[]
     }
+
 }
