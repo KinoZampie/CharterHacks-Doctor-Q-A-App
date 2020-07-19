@@ -1,0 +1,61 @@
+{
+    "username0": {
+        "password": "BRO I LOVE STORING PASSWORDS IN PLAIN TEXT",
+        "description": "userzero's  bio",
+        "is_doctor": true,
+        "posts": [
+            12,
+            32,
+            42,
+            2,
+            43
+        ],
+        "comments": [
+            12,
+            2,
+            14,
+            4
+        ]
+    },
+    "username1": {
+        "password": "I LOVE PLAIN TEXT PASSWORDS",
+        "description": "userone's  bio",
+        "is_doctor": false,
+        "posts": [
+            34,
+            12,
+            43,
+            65
+        ],
+        "comments": [
+            13,
+            0,
+            24,
+            4
+        ]
+    },
+    "epicboi": {
+        "password": "password",
+        "description": null,
+        "is_doctor": true,
+        "image_url": "https://image.shutterstock.com/image-photo/white-transparent-leaf-on-mirror-260nw-577160911.jpg",
+        "posts": [],
+        "comments": []
+    },
+    "Gay": {
+        "password": "Gay",
+        "description": null,
+        "is_doctor": true,
+        "image_url": "Gay.com",
+        "posts": [],
+        "comments": []
+    },
+    "": {
+        "password": "",
+        "description": null,
+        "is_doctor": false,
+        "image_url": "",
+        "posts": [],
+        "comments": []
+    }
+}

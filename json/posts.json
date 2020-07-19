@@ -1,0 +1,9 @@
+{
+    "1":{
+        "title":"The Post's title",
+        "body":"The text of the post goes here",
+        "username":"The Post's author",
+        "date":"The date of the post",
+        "comments":[12, 32, 42]
+    }
+}

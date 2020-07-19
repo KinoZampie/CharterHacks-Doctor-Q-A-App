@@ -7,19 +7,21 @@
     
      <body style="background-image: url({{ url_for('static', filename='background.jpg') }}); height: 100%; background-position: center; background-repeat: no-repeat;background-size: cover; z-index:0;"> 
         <div class="card">
-        <p> Username <br> <input type="text">  </p>
-        <p> Password <br> <input type="password"> </p>
+        <form method="POST">
+        <p> Username <br> <input type="text" name="username">  </p>
+        <p> Password <br> <input type="password" name="password"> </p>
         <p> Please send a link to an image. If you are a doctor, please send a link to an image of yourself holding a piece of paper with your name written. You may use an imgur link or anything else to link an image. </p>
-        <p> Image Link <br> <input type="text"> </p>
+        <p> Image Link <br> <input type="text" name="img"> </p>
         <p> If you are a doctor, please enter a description proving you are a doctor (for example, send a url to your credentials). If you are not a doctor, enter any text desired for the description </p>
         <p> Description <br> <textarea name="hello" rows="4" cols="50" > </textarea> </p>
         <p> Who are you? </p>
-        <input type="radio" name="role" value="doctor">
+        <input type="radio" name="role" value="True">
         <label for="doctor">Doctor</label><br>
-        <input type="radio" name="role" value="user">
+        <input type="radio" name="role" value="False">
         <label for="user">User</label><br>
         <input type="submit" value="Submit"> <br> <br><br>
         <a href="/"> Landing Page </a>
+        </form>
         </div>
     </body>
 </html>

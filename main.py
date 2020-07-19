@@ -1,21 +1,45 @@
-from flask import Flask, render_template, request
-import json, os
+from flask import Flask, render_template, request, url_for, redirect
+import os
+import asclepius
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    if request.method == "POST":
-        return "POSTED"
     return render_template('index.html')
 
-@app.route('/register')
+@app.route('/register',methods=["GET","POST"])
 def register():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        image_url = request.form.get("img")
+        desc = request.form.get("description")
+        is_doctor = bool(request.form.get("role"))
+        if not asclepius.Account.is_stored(username):
+            user = asclepius.Account(username,password,desc,is_doctor,image_url)
+            user.store_account()
+            return redirect(url_for("login"))
+        
     return render_template('register.html')
 
-@app.route('/login')
+@app.route('/login', methods=["GET","POST"])
 def login():
+    if request.method=="POST":
+        username=request.form.get("username")
+        password=request.form.get("password")
+        user=asclepius.Account.load_account(username)
+        # print(password)
+        # print(user)
+        # print(asclepius.Account.is_stored(username))
+        if asclepius.Account.is_stored(username):
+            real_password=user.password
+            if password==real_password:
+                return redirect(url_for("posts"))
+        else:
+            return redirect(url_for("login"))
     return render_template("login.html")
+    
 
 @app.route('/posts')
 def posts():
@@ -30,38 +54,4 @@ def profile():
     return render_template("profile.html")
 
 if __name__=="__main__":
-    app.run(debug=False, host="0.0.0.0")
-
-# Sample Json docs
-# Saving them 
-sample_users = \
-{
-    "username0":{
-        "password":"imagine storing passwords in plaintext",
-        "description":"userzero's  bio",
-        "is_doctor":True,
-        "posts":[12,32,42,2,43], #Post IDs i guess?
-        "comments":[[12,2],[44,4]] #Post ID, then comment ID
-    },
-    "username1":{
-        "password":"imagine storing passwords in plaintext",
-        "description":"userone's  bio",
-        "is_doctor":False,
-        "posts":[34,12,43,65],
-        "comments":[[13,0],[24,4]]
-    }
-}
-sample_posts = \
-{
-    "1":{ #Post ID
-        "title":"The Post's title",
-        "description":"The Post's description",
-        "username":"The Post's author",
-        "comments":[
-            ["username", "Lol that's dumb"],
-            ["username1", "Drink Bleach"],
-            ["username2", "Have you tried nuzzling your muzzle uwu?"]
-        ]
-    }
-}
-
+    app.run(debug=True, host="0.0.0.0")
