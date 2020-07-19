@@ -9,9 +9,16 @@
             <p>{{ post_data.body }}</p>
             <p>By: {{ post_data.user }}</p>
             <br><br>
-            <h3>Comments</h3>
-            
         </div>
+        <div class="card">
+            <h3>Comments</h3>
+        </div>
+        {% for post_comment in post_comments %}
+            <div class="card">
+                <p>{{ post_comment.user }}</p>
+                <p>{{ post_comment.body }}</p>
+            </div>
+        {% endfor %}
         <!-- <div id="content">
             <div class="post">
                 <h1>Title</h1>
