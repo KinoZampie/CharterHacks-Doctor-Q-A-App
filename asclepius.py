@@ -1,3 +1,5 @@
+import datetime
+
 users = \
 {
     "username0":{
@@ -19,22 +21,22 @@ users = \
 
 posts = \
 {
-    "1":{ #Post ID
+    1:{ #Post ID
         "title":"The Post's title",
         "body":"The text of the post goes here",
         "username":"The Post's author",
         "date":"The date of the post",
-        "comments":[12, 32, 42] # The children of a post (comment id's)
+        "comments":[12, 32, 42] #The children of a post (comment id's)
     }
 }
 
 comments = \
 {
-    "1":{ #Comment ID
+    1:{ #Comment ID
         "body":"The text of the comment goes here",
         "username":"The comment's author",
         "date":"The date of the post",
-        "comments":[12, 32, 42] # The children of a comment (other comment id's)
+        "comments":[12, 32, 42] #The children of a comment (other comment id's)
     }
 }
 
@@ -45,6 +47,8 @@ class Account:
         self.password = password
         self.description = description
         self.is_doctor = is_doctor
+        self.posts = []
+        self.comments = []
 
     def __str__(self):
         return "Account(username: '{}', password: '{}', description: '{}', is_doctor: '{}')".format(self.username, self.password, self.description, self.is_doctor)
@@ -55,10 +59,10 @@ class Account:
             user = users[username]
             return cls(username, user['password'], user['description'], user['is_doctor'])
         except KeyError:
-            print(username + ' is not saved as an account yet!')
+            print('No stored accounts named: ' + username)
 
     @staticmethod
-    def is_saved(username):
+    def is_stored(username):
         if username in users:
             return True
         else:
@@ -71,17 +75,21 @@ class Account:
             user_list.append(user)
         return user_list
 
-    def save_account(self):
-        users[self.username] = []
-        users[self.username].append({
+    def store_account(self):
+        users[self.username] = ({
             'password': self.password,
             'description': self.description,
             'is_doctor': self.is_doctor
         })
 
     def write_post(self, title, body):
-        post = Post(Post.new_id(), title, body, self.username, datetime.datetime.now())
-        post.save_post()
+        post_id = Post.new_id()
+        post = Post(post_id, title, body, self.username, datetime.datetime.now())
+
+        self.posts.append(post_id)
+        self.store_account()
+        post.store_post()
+        
 
 class Post:
     def __init__(self, post_id, title, body, user, date):
@@ -97,48 +105,75 @@ class Post:
         return int(max(posts)) + 1 #Get a new ID for fresh posts
 
     @classmethod
-    def load_post(post_id): #Load post from JSON to object
+    def load_post(cls, post_id): #Load post from JSON to object
         try:
             post = posts[post_id]
             return cls(post_id, post["title"], post["body"], post["username"], post["date"])
         except KeyError:
-            print('No saved posts have id: ' + post_id)
+            print('No stored posts have id: ' + post_id)
 
-    def save_post(): #Save a fresh post to JSON
-        posts[self.post_id] = []
-        posts[self.post_id].append({
+    #USE USER OBJECT AS ARGUMENT
+    def write_comment(self, body, user):    
+        comment_id = Comment.new_id() #Generate ID
+
+        comment = Comment(comment_id, body, user.username, datetime.datetime.now())
+
+        user.comments.append(comment_id)
+        self.comments.append(comment_id)
+
+        #Update JSON of post and comment
+        comment.store_comment()
+        self.store_post()
+        user.store_account()
+
+
+    def store_post(self): #Store a post to JSON
+        posts[self.post_id] = ({
             'title': self.title,
             'body': self.body,
             'username': self.user,
-            'date': self.date
+            'date': self.date,
+            'comments': self.comments
         })
-        
+
 
 class Comment:
-    def __init__(self, comment_id, post_id, body, user, date):
-        self.post_id = post_id
+    def __init__(self, comment_id, body, user, date):
+        self.comment_id = comment_id
         self.body = body
         self.user = user
         self.date = date
+        self.comments = [] #List for storing child comments
 
     @staticmethod
     def new_id():
-        return int(max(comments)) + 1 # Get a new ID for comments to use
+        return int(max(comments)) + 1 #Get a new ID for comments to use
 
     @classmethod
-    def load_comment(coment_id):
+    def load_comment(cls, comment_id):
         try:
             comment = comments[comment_id]
-            return cls(comment_id, comment["body"], post["username"], post["date"])
+            return cls(comment_id, comment["body"], comment["username"], comment["date"])
         except KeyError:
-            print('No saved comments have id: ' + comment_id)
+            print('No stored comments have id: ' + comment_id)
 
-    def save_comment(): #Save a fresh comment to JSON
-        comments[self.comment_id] = []
-        comments[self.comment_id].append({
-            'title': self.title,
+    def store_comment(self): #Store a fresh comment to JSON
+        comments[self.comment_id] = ({
             'body': self.body,
             'username': self.user,
-            'date': self.date
+            'date': self.date,
+            'comments': self.comments
         })
+
+    def write_comment(self, body, user):
+        comment_id = Comment.new_id()
+        comment = Comment(comment_id, body, user.username, datetime.datetime.now())
+
+        user.comments.append(comment_id)
+        self.comments.append(comment_id)
+
+        #Update JSON of parent and child comment
+        user.store_account()
+        self.store_comment()
+        comment.store_comment()
 
