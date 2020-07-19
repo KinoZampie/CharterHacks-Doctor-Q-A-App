@@ -23,8 +23,7 @@ class Account:
         global users
         with open("json/users.json") as user_data:
             users = json.load(user_data)
-
-
+        
     @classmethod
     def load_account(cls, username):
         try:
@@ -82,11 +81,14 @@ class Post:
     def new_id():
         return int(max(posts)) + 1 #Get a new ID for fresh posts
 
+    @staticmethod
+    def load_all():
+        global posts
+        with open("json/posts.json") as post_data:
+            posts = json.load(post_data)
+        return posts
     @classmethod
     def load_post(cls, post_id): #Load post from JSON to object
-        global posts
-        with open("json/posts.json","r") as post_data:
-            posts = json.load(post_data)
         try:
             post = posts[post_id]
             return cls(post_id, post["title"], post["body"], post["username"], post["date"])
@@ -118,6 +120,9 @@ class Post:
         }
         with open("json/users.json","w") as post_data:
             post_data.write(json.dumps(posts,indent=2))
+        postids=open("postids.txt", "a")
+        postids.write(self.title)
+        postids.close()
 
 
 class Comment:
@@ -127,6 +132,12 @@ class Comment:
         self.user = user
         self.date = date
         self.comments = [] #List for storing child comments
+
+    @staticmethod
+    def load_all():
+        global comments
+        with open("json/comments.json") as comment_data:
+            comments = json.load(comment_data)
 
     @staticmethod
     def new_id():
@@ -166,4 +177,7 @@ class Comment:
         comment.store_comment()
 
 
+#Load data from json
 Account.load_all()
+Post.load_all()
+Comment.load_all()

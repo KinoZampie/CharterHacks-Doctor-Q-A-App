@@ -46,7 +46,6 @@ h1, h2, h3, h4, h5, h6{
 	margin:auto;
 
 	position:relative;
-
 	top: 10%;
     border-radius:10px;
     text-align: center; 
@@ -55,7 +54,3 @@ h1, h2, h3, h4, h5, h6{
 a,p,h1,h2,h3,h4,h5,h6,label{
     color: #9dbacc;
 } 
-
-.posts{
-
-}

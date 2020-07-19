@@ -3,22 +3,46 @@
     <head>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
-    <body>
+    <body style="background-image: url({{ url_for('static', filename='background.jpg') }}); height: 100%; background-position: center; background-repeat: no-repeat;background-size: cover; z-index:0;"> 
         <div id="content">
+            <form method="POST">
             <div id="create_post" class="card">
-                <input type="text" placeholder="UwU">
+                <input type="text" placeholder="Title" name="the_title">
+                <textarea placeholder="Description" name="the_description"></textarea>
+                <input type="submit" value="Submit" value="creating_post">
+             </form>
+                
             </div>
-            <div id="posts">
-                <div class="post" class="card">
+            <!-- <div id="posts">
+                <div class="post card">
                     <h1>Title</h1>
                     <p> Username </p>
                 </div>
-                <div class="post" class="card">
+                <div class="post card">
                     <h1>Title</h1>
                     <p> Username </p>
                 </div>
             </div>
+        </div>  -->
+        <div id="posts">
+        {% for post in posts %}
+        <a href="{{ url_for('post',post_id=post) }}">
+            <div id="post" class="card">
+                <h1> {{ posts[post]["title"] }} </h1>
+                <p>{{ posts[post]["body"] }}</p>
+                <h6>Posted By:{{posts[post]["username"]}}</h6>
+                <h6>{{ posts[post]["comments"]|length }} comments</h6>
+            </div>
+        </a>
+        {% endfor %}
         </div>
+        <!-- <form action='/posts' method='post'>
+            <input placeholder="Name" name="name">
+                <input placeholder="Post Content" name="post">
+                <input type="submt" value="Submit">
+            </input>
+        </form> -->
+        
     </body>
 </html>
 
