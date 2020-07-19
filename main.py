@@ -74,6 +74,8 @@ def posts():
 
 @app.route("/posts/<post_id>", methods=["GET","POST"])
 def post(post_id):
+    post_data = asclepius.Post.load_post(post_id=post_id)
+    return str(post_data.comments)
     return render_template("post.html")
 
 @app.route('/profiles/<profile>')

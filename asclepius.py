@@ -69,13 +69,13 @@ class Account:
         
 
 class Post:
-    def __init__(self, post_id, title, body, user, date):
+    def __init__(self, post_id, title, body, user, date, comments=[]):
         self.post_id = post_id
         self.title = title
         self.body = body
         self.user = user
         self.date = date
-        self.comments = []
+        self.comments = comments
 
     @staticmethod
     def new_id():
@@ -91,7 +91,7 @@ class Post:
     def load_post(cls, post_id): #Load post from JSON to object
         try:
             post = posts[post_id]
-            return cls(post_id, post["title"], post["body"], post["username"], post["date"])
+            return cls(post_id, post["title"], post["body"], post["username"], post["date"],post["comments"])
         except KeyError:
             print('No stored posts have id: ' + post_id)
 
