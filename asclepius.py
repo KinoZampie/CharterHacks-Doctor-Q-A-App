@@ -1,3 +1,4 @@
+import datetime
 users = \
 {
     "username0":{
@@ -141,4 +142,3 @@ class Comment:
             'username': self.user,
             'date': self.date
         })
-
