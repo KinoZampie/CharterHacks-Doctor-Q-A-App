@@ -110,7 +110,7 @@ class Post:
             'title': self.title,
             'body': self.body,
             'username': self.user,
-            'date' = self.date
+            'date': self.date
         })
         
 
@@ -131,6 +131,7 @@ class Comment:
             comment = comments[comment_id]
             return cls(comment_id, comment["body"], post["username"], post["date"])
         except KeyError:
+            print('No saved comments have id: ' + comment_id)
 
     def save_comment(): #Save a fresh comment to JSON
         comments[self.comment_id] = []
@@ -138,7 +139,6 @@ class Comment:
             'title': self.title,
             'body': self.body,
             'username': self.user,
-            'date' = self.date
+            'date': self.date
         })
-            print('No saved comments have id: ' + comment_id)
 
