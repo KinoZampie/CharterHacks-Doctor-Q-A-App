@@ -63,33 +63,3 @@ sample_posts = \
     }
 }
 
-# BEGINNING OF CLASSES
-class Account:
-    # Create object then store to JSON
-    def __init__(self, username, password, description, is_doctor):
-        self.username = username
-        self.password = password
-        self.description = description
-        self.is_doctor = is_doctor
-        self.save_account(username, password, description, is_doctor)
-
-    # Load values from JSON
-    @classmethod
-    def load_account(cls, username):
-        pass
-
-    # Save values to JSON
-    def save_account(username, password, description, is_doctor):
-        pass
-
-    # Return string of comment given index
-    def get_comment(index):
-        pass
-
-    # Return title of a post
-    def get_post_title(index):
-        pass
-
-    #Return body of a post
-    def get_post_body(index):
-        pass
