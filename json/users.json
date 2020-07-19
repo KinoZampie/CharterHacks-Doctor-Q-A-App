@@ -63,7 +63,9 @@
     "description": null,
     "is_doctor": true,
     "image_url": "www.google.com",
-    "posts": [],
+    "posts": [
+      3
+    ],
     "comments": []
   },
   "John": {

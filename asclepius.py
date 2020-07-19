@@ -111,18 +111,16 @@ class Post:
 
 
     def store_post(self): #Store a post to JSON
+        print('storing post')
         posts[self.post_id] = {
             'title': self.title,
             'body': self.body,
             'username': self.user,
-            'date': self.date,
+            'date': None,
             'comments': self.comments
         }
-        with open("json/users.json","w") as post_data:
+        with open("json/posts.json","w") as post_data:
             post_data.write(json.dumps(posts,indent=2))
-        postids=open("postids.txt", "a")
-        postids.write(self.title)
-        postids.close()
 
 
 class Comment:

@@ -65,10 +65,10 @@ def posts():
     #     users=f.read().splitlines()
     posts = asclepius.Post.load_all()
     if request.method=="POST":
-        title=request.form.get("the_title")
-        description=request.form.get("the_description")
+        title=request.form.get("title")
+        description=request.form.get("description")
         the_user=asclepius.Account.load_account(request.cookies.get("username"))
-        user.asclepius.write_post(title, description)
+        the_user.write_post(title, description)
         
     return render_template("posts.html", posts=posts)
 
