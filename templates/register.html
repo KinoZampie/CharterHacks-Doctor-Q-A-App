@@ -5,7 +5,8 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
     
-     <body>
+     <body style="background-image: url({{ url_for('static', filename='background.jpg') }}); height: 100%; background-position: center; background-repeat: no-repeat;background-size: cover; z-index:0;"> 
+        <div class="card">
         <p> Username <br> <input type="text">  </p>
         <p> Password <br> <input type="password"> </p>
         <p> Please send a link to an image. If you are a doctor, please send a link to an image of yourself holding a piece of paper with your name written. You may use an imgur link or anything else to link an image. </p>
@@ -17,5 +18,8 @@
         <label for="doctor">Doctor</label><br>
         <input type="radio" name="role" value="user">
         <label for="user">User</label><br>
+        <input type="submit" value="Submit"> <br> <br><br>
+        <a href="/"> Landing Page </a>
+        </div>
     </body>
 </html>

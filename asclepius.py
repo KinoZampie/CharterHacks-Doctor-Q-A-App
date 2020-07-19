@@ -176,4 +176,3 @@ class Comment:
         user.store_account()
         self.store_comment()
         comment.store_comment()
-

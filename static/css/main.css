@@ -1,17 +1,61 @@
-body {
+  body {
     background-color: #121212;
     color: white;
+    /* background-color: #121212;  */
+    font-weight: bold;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    text-align: center;
+    margin: auto;
+	 }
 
+body, html {
+    width: 100%;
+    height: 100%;
+}
 a {
     color:#3993c4;
+    text-align:center;
+    font-weight: bold;
+    /* color:#3993c4;
+    color: #9dbacc; */
 }
 
 p{
     color: #c9eded;
+    font-weight: bold;
+    color: #20353b;
+    opacity: 100%;
+    /* color: #9dbacc; */
 }
 
-textarea{
-    color: #4b656b;
+
+
+h1, h2, h3, h4, h5, h6{
+    /* color:#4b656b; */
+    font-weight: bold;
+	/* color: #033842; */
+    opacity: 100%;
+}
+
+*{
+	text-align: center;
+}
+.card{
+	background-color:#023c61;
+
+	margin:auto;
+
+	position:relative;
+
+	top: 10%;
+    border-radius:10px;
+    text-align: center; 
+    width: 50%;
+}
+a,p,h1,h2,h3,h4,h5,h6,label{
+    color: #9dbacc;
+} 
+
+.posts{
+
 }

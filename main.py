@@ -1,10 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import json, os
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
+    if request.method == "POST":
+        return "POSTED"
     return render_template('index.html')
 
 @app.route('/register')
